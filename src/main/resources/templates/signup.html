@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Smart Contact Manager - Register page</title>
+</head>
+<body>
+	<section>
+		<div class="container ">
+			
+			<div class="row">
+				
+				<div class="col-md-4 offset-md-4">
+				
+								
+					<div class="my-card mt-3 mb-3">
+						
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+						  <p class="text-center" th:text="${session.message.content}"></p>
+						  
+						  <th:block th:text = "${#session.removeAttribute('message')}"></th:block>
+						</div>
+					
+						<!-- Image -->
+						<div class="container text-center">
+							
+							<img style="width: 60px;" src="" th:src="@{/img/register.png}" alt="" />
+						</div>
+						
+						
+						<!-- Form -->
+						<h2 class="text-center">Register Here</h2>
+						
+						<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
+						
+							<!-- Name field -->
+							
+							<div class="mb-3">
+							
+	    						<label for="name_field" class="form-label">Name</label>
+	    						
+	    						<input 
+	    							name="name"
+	    							type="text" 
+	    							class="form-control" 
+	    							id="name_field" 
+	    							aria-describedby="emailHelp"
+	    							placeholder="Enter Here"
+	    							th:classappend= "${#fields.hasErrors('name')? 'is-invalid':''}"
+	    							th:value="${user.name}"
+	    							required
+	    							/>
+	    							
+	    							<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+									id="name_field" class="invalid-feedback">
+									</div>
+	  						</div>
+	  						
+	  						
+							<!-- Email field -->
+							
+							<div class="mb-3">
+							
+	    						<label for="email_field" class="form-label">Email</label>
+	    						
+	    						<input
+	    							name="email"
+	    							type="email" 
+	    							class="form-control" 
+	    							id="email_field" 
+	    							aria-describedby="emailHelp"
+	    							placeholder="Enter Here"
+									th:classappend= "${#fields.hasErrors('email')? 'is-invalid':''}"
+	    							th:value="${user.email}"
+	    							required
+	    							/>
+	    							
+	    							<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+										id="email_field" class="invalid-feedback">
+									</div>
+	  						</div>
+	  						
+	  						
+							<!-- Password field -->
+							
+							<div class="mb-3">
+							
+	    						<label for="password_field" class="form-label">Password</label>
+	    						
+	    						<input 
+	    							name="password"
+	    							type="password" 
+	    							class="form-control" 
+	    							id="password_field" 
+	    							aria-describedby="passwordHelp"
+	    							placeholder="Enter Here"
+	    							th:classappend= "${#fields.hasErrors('password')? 'is-invalid':''}"
+	    							th:value="${user.password}"
+	    							required/>
+	    							
+	    							<div th:each="e : ${#fields.errors('password')}" th:text="${e}"
+										id="password_field" class="invalid-feedback">
+									</div>
+	  						</div>
+	  						
+	  						
+	  						<!-- User About Field -->
+	  						
+	  						<div class="form-group">
+	  							
+	  							<textarea  
+	  								name="about"
+	  								placeholder="Enter something about yourself"  
+	  								rows="4" 
+	  								class="form-control"
+	  								th:classappend= "${#fields.hasErrors('about')? 'is-invalid':''}"
+	  								th:value="${user.about}"></textarea>
+	  								
+	  								<div th:each="e : ${#fields.errors('about')}" th:text="${e}"
+										id="about_field" class="invalid-feedback">
+									</div>
+	  								
+	  								
+	  						</div>
+	  						
+	  						
+	  						<!-- Terms and Conditions -->
+	
+	  						<div class="form-group form-check mt-2">
+	  						
+	  							<input type="checkbox" 
+	  								name = "agreement" 	
+	  								class="form-check-input" 	
+	  								id="agreement"
+	  								/>
+	  						
+	  							<label for="agreement">Accept Terms and Conditions</label>
+	  						</div>
+	  						
+	  						<!-- Buttons -->
+	  						
+	  						<div class="container text-center mt-3">
+	  							<button type = "submit" class="btn bg-primary text-center text-white">Submit</button>
+	  							
+	  							<button type = "reset" class="btn btn-warning text-center text-black">Reset</button>
+	  						</div>
+	  					</form>	
+  						
+					</div>	
+						 
+				</div>
+			
+			</div>
+			
+		</div>
+		
+	</section>
+</body>
+</html>
